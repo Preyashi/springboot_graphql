@@ -1,0 +1,44 @@
+type Customer {
+custId: Float!,
+custNum: Float!,
+custTieBrkr: Float!,
+firstName: String,
+lastName: String,
+dob: String,
+address: String,
+city: String,
+country: String,
+riskIndicator: String,
+relatedAccounts: [Account]
+}
+
+type TransitionHistoryDetails {
+    transMonth: Int,
+    transNum: Int,
+    totalMeanTrans: Float,
+    maxTransPerDay: Int,
+    maxAmountTrans: Float,
+    monthlyTotalAmountTrans: Float,
+    meanAmountTransTillDt: Float,
+    currency: String
+}
+
+type Account {
+accountId: Float!,
+accountNum: Float!,
+accountCompCode: String!,
+currency: String,
+balance: Float,
+type: String,
+relatedCustomer:[Customer],
+latestTransitionDetails : TransitionHistoryDetails
+}
+
+
+type Query {
+findCustomers:[Customer],
+findCustomer(custId: Float!,custNum: Float!, custTieBrkr: Float!):Customer,
+findAccounts:[Account],
+findAccount(accountId: Float,accountNum: Float, accountCompCode: String):Account
+}
+
